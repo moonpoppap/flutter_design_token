@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'design_tokens.dart';
+
 // Theme Provider using ChangeNotifier
 class ThemeProvider with ChangeNotifier {
   static const String THEME_KEY = 'theme_mode';
@@ -24,6 +26,7 @@ class ThemeProvider with ChangeNotifier {
 
   // Load theme from SharedPreferences
   Future<void> _loadThemeMode() async {
+    await DesignTokens.initialize();
     final prefs = await SharedPreferences.getInstance();
     final savedTheme = prefs.getString(THEME_KEY);
 
